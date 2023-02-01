@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 function NotesList() {
   const [notes, setNotes] = useState([]);
@@ -16,8 +17,9 @@ function NotesList() {
     <div>
       {notes.map((note) => (
         <div key={note.id}>
-          <h2>{note.title}</h2>
-          <p>{note.body}</p>
+          <Link href="/notes/[id]" as={`/notes/${note.id}`}>
+            {note.title}
+          </Link>
         </div>
       ))}
     </div>
