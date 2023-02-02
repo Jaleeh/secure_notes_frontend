@@ -4,11 +4,7 @@ import NotesList from "/Users/jasonho/Documents/secure-notes-backend/secure-note
 import Layout from "../components/Layout";
 
 const index = () => {
-  return (
-    <Layout>
-      <NotesList />
-    </Layout>
-  );
+  return <NotesList />;
 };
 
 export default index;
