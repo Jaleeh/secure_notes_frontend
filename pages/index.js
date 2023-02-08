@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
-import NotesList from "/Users/jasonho/Documents/secure-notes-backend/secure-notes-fe/components/NotesList.js";
+import Link from "next/link";
+import LoginForm from "@/components/LoginForm";
 
-const index = () => {
-  return <NotesList />;
+const Homepage = () => {
+  return (
+    <div>
+      <Link href="/login">Login Here</Link>
+      <LoginForm />
+    </div>
+  );
 };
 
-export default index;
+export default Homepage;
