@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
+import jwt from "jsonwebtoken";
 
 const LoginForm = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,7 +15,7 @@ const LoginForm = () => {
         email,
         password,
       });
-      console.log(response.data);
+      router.push("/mynotes");
     } catch (error) {
       console.log(error);
     }
