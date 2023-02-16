@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import PrivateRoutes from "./PrivateRoutes";
 
 function UpdateNote({ noteId }) {
   const [note, setNote] =
@@ -43,4 +44,8 @@ function UpdateNote({ noteId }) {
   );
 }
 
-export default UpdateNote;
+export default () => (
+  <PrivateRoutes>
+    <UpdateNote />
+  </PrivateRoutes>
+);

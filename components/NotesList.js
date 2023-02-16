@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import PrivateRoutes from "./PrivateRoutes";
 
 function NotesList() {
   const [notes, setNotes] = useState([]);
@@ -26,4 +27,8 @@ function NotesList() {
   );
 }
 
-export default NotesList;
+export default () => (
+  <PrivateRoutes>
+    <NotesList />
+  </PrivateRoutes>
+);

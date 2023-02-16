@@ -1,4 +1,5 @@
 import axios from "axios";
+import PrivateRoutes from "./PrivateRoutes";
 
 const DeleteNote = async (noteId) => {
   const response = await axios.delete(
@@ -7,4 +8,8 @@ const DeleteNote = async (noteId) => {
   return response.data;
 };
 
-export default DeleteNote;
+export default () => (
+  <PrivateRoutes>
+    <DeleteNote />
+  </PrivateRoutes>
+);

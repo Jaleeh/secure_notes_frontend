@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import PrivateRoutes from "./PrivateRoutes";
 
 const AddNote = () => {
   const [note, setNote] = useState({
@@ -31,4 +32,8 @@ const AddNote = () => {
   );
 };
 
-export default AddNote;
+export default () => (
+  <PrivateRoutes>
+    <AddNote />
+  </PrivateRoutes>
+);

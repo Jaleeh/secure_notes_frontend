@@ -1,24 +1,20 @@
 import React from "react";
 import NotesList from "@/components/NotesList";
-import PrivateRoutes from "@/components/PrivateRoutes";
 import Link from "next/link";
+import PrivateRoutes from "@/components/PrivateRoutes";
 
-const mynotes = () => {
+const Mynotes = () => {
   return (
     <div>
       <div>
         <Link href="/addnote">Add New Note</Link>
       </div>
 
-      <PrivateRoutes>
-        <div>
-          <NotesList />
-        </div>
-      </PrivateRoutes>
+      <div>
+        <NotesList />
+      </div>
     </div>
   );
 };
 
-export default mynotes;
-
-// CHANGE PROTECTED ROUTES IN NEXTJS (AUTHCONTEXT)
+export default Mynotes;

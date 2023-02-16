@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import jwt from "jsonwebtoken";
+import PrivateRoutes from "./PrivateRoutes";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -11,10 +11,11 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:8000/auth/login/", {
+      const response = await axios.post("http://127.0.0.1:8000/auth/token/", {
         email,
         password,
       });
+      localStorage.setItem("jwt_token", response.data.access);
       router.push("/mynotes");
     } catch (error) {
       console.log(error);
@@ -37,4 +38,8 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default () => (
+  <PrivateRoutes>
+    <LoginForm />
+  </PrivateRoutes>
+);

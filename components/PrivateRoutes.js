@@ -1,20 +1,27 @@
 import jwt from "jsonwebtoken";
 import Router from "next/router";
+import React, { useEffect } from "react";
+import axios from "axios";
 
 const PrivateRoutes = ({ children }) => {
-  const jwtToken = localStorage.getItem("jwt_token");
+  useEffect(() => {
+    const jwtToken = localStorage.getItem("jwt_token"); //gets jwt token from local storage
 
-  try {
-    const decoded = jwt.decode(jwtToken);
-    //checks if token still valid
-    if (decoded) {
-      return children;
+    if (!jwtToken) {
+      //if there is no token, redirect to index
+      Router.push("/");
+    } else {
+      axios
+        .post("http://127.0.0.1:8000/auth/token/verify/", { token: jwtToken }) //verify jwt token
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          Router.push("/");
+        });
     }
-  } catch (error) {
-    //send back to login page if token expired or invalid
-    Router.push("/login");
-    return null;
-  }
+  }, []);
+  return <>{children}</>; //renders protected context passed as children prop
 };
-
 export default PrivateRoutes;
