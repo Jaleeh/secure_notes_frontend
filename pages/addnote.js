@@ -2,6 +2,6 @@ import PrivateRoutes from "@/components/PrivateRoutes";
 import React from "react";
 import AddNote from "@/components/AddNote";
 
-const Addnote = () => <AddNote />;
+const Createnote = () => <AddNote />;
 
-export default Addnote;
+export default Createnote;

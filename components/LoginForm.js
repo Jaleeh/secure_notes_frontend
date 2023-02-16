@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import PrivateRoutes from "./PrivateRoutes";
+import Login from "@/pages/login";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -16,6 +17,7 @@ const LoginForm = () => {
         password,
       });
       localStorage.setItem("jwt_token", response.data.access);
+      localStorage.setItem("refresh_token", response.data.refresh);
       router.push("/mynotes");
     } catch (error) {
       console.log(error);
@@ -38,8 +40,4 @@ const LoginForm = () => {
   );
 };
 
-export default () => (
-  <PrivateRoutes>
-    <LoginForm />
-  </PrivateRoutes>
-);
+export default LoginForm;
