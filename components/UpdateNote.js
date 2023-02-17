@@ -13,10 +13,17 @@ function UpdateNote({ noteId }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        `http://127.0.0.1:8000/api/notes/${noteId}`
-      );
-      setNote(response.data);
+      try {
+        const jwtToken = localStorage.getItem("jwt_token");
+        const response = await axios.get(`127.0.0.1:8000/api/notes/${noteId}`, {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        });
+        setNotes(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchData();
   }, [noteId]);

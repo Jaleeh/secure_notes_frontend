@@ -10,7 +10,13 @@ const AddNote = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://127.0.0.1:8000/api/notes/create", note);
+    const jwtToken = localStorage.getItem("jwt_token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    };
+    await axios.post("http://127.0.0.1:8000/api/notes/", note, config);
     setNote({ title: "", body: "" });
   };
 

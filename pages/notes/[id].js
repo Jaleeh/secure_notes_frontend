@@ -9,8 +9,20 @@ const noteId = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(`http://127.0.0.1:8000/api/notes/${id}`);
-      setNote(response.data);
+      try {
+        const jwtToken = localStorage.getItem("jwt_token");
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/notes/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${jwtToken}`,
+            },
+          }
+        );
+        setNote(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchData();
   }, [id]); //component is re-rendered when searching for id

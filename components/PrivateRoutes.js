@@ -28,7 +28,7 @@ const PrivateRoutes = ({ children }) => {
       axios
         .post("http://127.0.0.1:8000/auth/token/verify/", { token: jwtToken }) //verify jwt token
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           // Check if access token is about to expire (less than 5 minutes remaining)
           const exp = response.data.exp * 1000;
           const now = new Date().getTime();

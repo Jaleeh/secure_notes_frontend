@@ -8,8 +8,17 @@ function NotesList() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://127.0.0.1:8000/api/notes/");
-      setNotes(response.data);
+      try {
+        const jwtToken = localStorage.getItem("jwt_token");
+        const response = await axios.get("http://127.0.0.1:8000/api/mynotes/", {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        });
+        setNotes(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchData();
   }, []);
