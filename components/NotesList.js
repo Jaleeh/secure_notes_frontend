@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import PrivateRoutes from "./PrivateRoutes";
+import DeleteNote from "./DeleteNote";
+import UpdateNote from "./UpdateNote";
 
 function NotesList() {
   const [notes, setNotes] = useState([]);
@@ -29,6 +31,8 @@ function NotesList() {
         <div key={note.id}>
           <Link href="/notes/[id]" as={`/notes/${note.id}`}>
             {note.title}
+            <DeleteNote noteId={note.id} />
+            <UpdateNote noteId={note.id} />
           </Link>
         </div>
       ))}
